@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://ap-northeast.connect.psdb.cloud/taskdb?sslMode=VERIFY_IDENTITY
+
+  sql:
+    init:
+      mode: always
