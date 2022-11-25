@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://ap-northeast.connect.psdb.cloud/taskdb?sslMode=VERIFY_IDENTITY
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
+    username: ${DATABASE.USERNAME}
+    password: ${DATABASE.PASSWORD}
 
   sql:
     init:
