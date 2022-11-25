@@ -1,11 +1,9 @@
 package games.panache.tasklist;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -16,15 +14,6 @@ public class HomeRestController {
 
     record TaskItem(String id, String task, String deadline, boolean done) {}
     private final List<TaskItem> taskItems = new ArrayList<>();
-
-    @RequestMapping("/resthello")
-    String hello() {
-        return """
-                Hello.
-                It works!
-                現在時刻は%sです。
-                """.formatted(LocalDateTime.now());
-    }
 
     @GetMapping("/restadd")
     String addItem(@RequestParam("task") String task,
