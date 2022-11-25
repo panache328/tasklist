@@ -4,10 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,11 +50,5 @@ public class HomeController {
     String deleteItem(@RequestParam("id") String id) {
         dao.delete(id);
         return "redirect:/list";
-    }
-
-    @RequestMapping("/hello")
-    String hello(Model model) {
-        model.addAttribute("time", LocalDateTime.now());
-        return "hello";
     }
 }
