@@ -1,15 +1,17 @@
+# syntax = docker/dockerfile:1.2
+
 #
 # Build stage
 #
-FROM maven:FROM 3.8.6-amazoncorretto-19 AS build
+FROM maven:3.8.6-amazoncorretto-19-alpine AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
-RUN mvn -f /home/app/pom.xml clean package
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env mvn -f /home/app/pom.xml clean package 
 
 #
 # Package stage
 #
-FROM amazoncorretto:19-alpine3.16
-COPY --from=build /home/app/target/tasklst-0.0.1.jar /usr/local/lib/tasklist.jar
+FROM amazoncorretto:19-alpine-jdk
+COPY --from=build /home/app/target/*.jar /usr/local/lib/*.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/tasklist.jar"]
+ENTRYPOINT ["java","-jar","/usr/local/lib/*.jar"]
