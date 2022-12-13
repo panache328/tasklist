@@ -10,10 +10,8 @@ RUN mvn -f /home/app/pom.xml clean package
 # Package stage
 #
 FROM amazoncorretto:19-alpine-jdk
-ARG DATABASE_USERNAME
-ARG DATABASE_PASSWORD
-ENV DATASOURCE_USERNAME=${DATABASE_USERNAME}
-ENV DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
+ENV DATASOURCE_USERNAME=$DATABASE_USERNAME
+ENV DATASOURCE_PASSWORD=$DATABASE_PASSWORD
 COPY --from=build /home/app/target/*.jar /usr/local/lib/*.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/local/lib/*.jar"]
