@@ -3,10 +3,10 @@
 #
 # Build stage
 #
-FROM maven:3.8.6-amazoncorretto-19-alpine AS build
+FROM maven:3.8.6-amazoncorretto-19 AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env mvn -f /home/app/pom.xml clean package 
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env mvn -f /home/app/pom.xml clean package
 
 #
 # Package stage
