@@ -1,3 +1,9 @@
+docker:
+  boot:
+    secret:
+      path: /etc/secrets/
+      prefix: _env
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
